@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Loads Django Static Files -->
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Load jQuery -->
+    <script type="text/javascript"  src="{% static 'crawler/js/bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Load Django Main JS file (controls jQuery actions) -->
+    <script type="text/javascript"  src="{% static 'crawler/js/main.js' %}"></script>
+    <!-- Load Django Static CSS Sheet -->
+    <link rel="stylesheet" href="{% static "crawler/css/style.css" %}">
+    <title>AJAX Web Crawler</title>
+</head>
+<body>
+    <h1>Python AJAX Web Crawler Application</h1>
+    <p>This project uses Python to create a basic web crawler app which can crawl the data of any site entered below. The back-end crawling is powered using <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Beautiful Soup 4</a>. Try entering a URL below to receive HTML and all the containing `href` tags on from the website entered:</p>
+    <!-- Website to Crawl User Input -->
+    <fieldset><legend><h2>Website to Crawl:</h2></legend>
+        <!-- Error Messaging -->
+        <div class="errors"></div>
+        <!-- Crawl Form -->
+        <form action="/crawl" method="POST" name="crawl_form" id="crawl_form">
+            <!-- CSRF Token for Django: Prevents Cross Site Request Forgeries -->
+            <!-- More info: https://docs.djangoproject.com/en/1.11/ref/csrf/ -->
+            {% csrf_token %}
+            <label for="website"> Website to Crawl:
+                <!-- URL to Crawl -->
+                <input type="text" name="website" id="website" placeholder="http://sasquat.ch">
+                <!-- Submit Button -->
+                <input type="submit" value="Crawl!">
+            </label>
+        </form>
+    </fieldset>
+</body>
+</html>
